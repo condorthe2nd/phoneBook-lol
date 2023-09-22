@@ -36,15 +36,13 @@ def add_email(contact, email):
     contact.emails.append(email)
 
 
-def delete_email(contact, email):
-    if email in contact.emails:
-        contact.emails.remove(email)
+def delete_email(contact):
+    contact.emails = None
 
 
 def add_phone_number(contact, phone_number):
     contact.phone_numbers.append(phone_number)
 
 
-def delete_phone_number(contact, phone_number):
-    if phone_number in contact.phone_numbers:
-        contact.phone_numbers.remove(phone_number)
+def delete_phone_number(contact):
+    contact.phone_numbers = None
