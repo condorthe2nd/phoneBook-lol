@@ -1,5 +1,5 @@
 from tkinter import Toplevel, Label, Entry, Button
-
+from manage_contact import manage_contact
 from Contact import Contact  # Import the Contact class
 from Pickles import save_contacts  # Import the function to save contacts
 
@@ -49,11 +49,14 @@ def create_contact(root, contacts):
         contacts[new_contact.name] = new_contact
         save_contacts(contacts)
         label.config(text=f"Added: {new_contact.name}")
-        new_window.after(0, new_window.destroy)
 
-    def manage_contact():
-        manage_contact_button = Button(new_window, text="Manage Contact", command=manage_contact)
-        manage_contact_button.grid(row=4, column=2)
+    def on_manage_contact_button_push():
+        manage_contact(root, contacts, enter_name.get())
+        new_window.destroy()
+
 
     add_button = Button(new_window, text="Add", command=add_button_click)
     add_button.grid(row=4, column=1)
+
+    manage_contact_button = Button(new_window, text="Manage Contact", command=on_manage_contact_button_push)
+    manage_contact_button.grid(row=4, column=2)

@@ -1,46 +1,35 @@
-from tkinter import Toplevel, Label, Button
 
-from contact_operations import search_contacts, add_email, delete_email, add_phone_number, delete_phone_number
+from tkinter import Toplevel, Label, Entry, Button
 
+from Contact import search_contacts, add_email, delete_email, add_phone_number, delete_phone_number
 
-def manage_contact(root, contacts,name):
+def manage_contact(root, contacts, name):
+    # Validate if 'name' exists in 'contacts'
+    if not search_contacts(contacts, name):
+        print("Contact not found")
+        return
+
     # Create a new window
     new_window = Toplevel(root)
     new_window.title("Look up a contact")
-    new_window.geometry("300x200")
+    new_window.geometry("400x300")
 
     def back_button_click():
         new_window.destroy()
 
-        Label(new_window, text="add_email").pack()
-    Button(new_window, text="add_email", command=lambda: add_email(contacts, name)).pack()
+    # Add a Back button
+    Button(new_window, text="Back", command=back_button_click).grid(row=0, column=0)
 
-    Label(new_window, text="delete_email").pack()
-    Button(new_window, text="delete_email", command=lambda: delete_email(contacts, name)).pack()
+    # Email entry box
+    Label(new_window, text="Email:").grid(row=1, column=0)
+    email_entry = Entry(new_window)
+    email_entry.grid(row=1, column=1)
+    Button(new_window, text="Add Email", command=lambda: add_email(search_contacts(contacts, name), email_entry.get())).grid(row=1, column=2)
+    Button(new_window, text="Delete Email", command=lambda: delete_email(search_contacts(contacts, name), email_entry.get())).grid(row=1, column=3)
 
-    Label(new_window, text="add_phone_number").pack()
-    Button(new_window, text="add_phone_number", command=lambda: add_phone_number(contacts, name)).pack()
-
-    Label(new_window, text="delete_phone_number").pack()
-    Button(new_window, text="delete_phone_number", command=lambda: delete_phone_number(contacts, name)).pack()
-
-# Function for search button
-    def search_button_click():
-        search_result = search_contacts(contacts, name)
-        if search_result:
-            result_label.config(text=f"Found: {search_result}")
-        else:
-            result_label.config(text="Contact not found")
-    # Add a search button
-    search_button = Button(new_window, text="Search", command=search_button_click)
-    search_button.pack()
-
-    # Label to display search result
-    result_label = Label(new_window, text="")
-    result_label.pack()
-
-    back_button = Button(new_window, text="Back", command=back_button_click)
-    back_button.pack()
-
-
-
+    # Phone number entry box
+    Label(new_window, text="Phone Number:").grid(row=2, column=0)
+    phone_entry = Entry(new_window)
+    phone_entry.grid(row=2, column=1)
+    Button(new_window, text="Add Phone", command=lambda: add_phone_number(search_contacts(contacts, name), phone_entry.get())).grid(row=2, column=2)
+    Button(new_window, text="Delete Phone", command=lambda: delete_phone_number(search_contacts(contacts, name), phone_entry.get())).grid(row=2, column=3)
