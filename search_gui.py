@@ -1,6 +1,7 @@
 from tkinter import Toplevel, Label, Entry, Button
 
-from contact_operations import search_contacts
+from Contact import search_contacts
+from manage_contact import manage_contact
 
 
 def find_contact(root, contacts):
@@ -17,6 +18,10 @@ def find_contact(root, contacts):
     entry.pack()
 
     def back_button_click():
+        new_window.destroy()
+
+    def on_manage_contact_button_push():
+        manage_contact(root, contacts, entry.get())
         new_window.destroy()
 
     # Function for search button
@@ -36,3 +41,11 @@ def find_contact(root, contacts):
 
     back_button = Button(new_window, text="Back", command=back_button_click)
     back_button.pack()
+
+    manage_contact_button = Button(new_window, text="Manage Contact", command=on_manage_contact_button_push)
+    manage_contact_button.pack()
+
+
+
+
+

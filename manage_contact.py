@@ -1,6 +1,7 @@
-
 from tkinter import Toplevel, Label, Entry, Button, messagebox
+
 from Contact import search_contacts, add_email, delete_email, add_phone_number, delete_phone_number
+
 
 def manage_contact(root, contacts, name):
     # Validate if 'name' exists in 'contacts'
@@ -10,7 +11,7 @@ def manage_contact(root, contacts, name):
 
     # Create a new window
     new_window = Toplevel(root)
-    new_window.title("Look up a contact")
+    new_window.title("EDIT CONTACT")
     new_window.geometry("400x300")
 
     def back_button_click():
@@ -26,7 +27,7 @@ def manage_contact(root, contacts, name):
     Button(new_window, text="Add Email",
            command=lambda: add_email(search_contacts(contacts, name), email_entry.get())).grid(row=1, column=2)
     Button(new_window, text="Delete Email",
-           command=lambda: delete_email(search_contacts(contacts, name), email_entry.get())).grid(row=1, column=3)
+           command=lambda: delete_email(search_contacts(contacts, name)).grid(row=1, column=3))
 
     # Phone number entry box
     Label(new_window, text="Phone Number:").grid(row=2, column=0)
@@ -35,4 +36,4 @@ def manage_contact(root, contacts, name):
     Button(new_window, text="Add Phone",
            command=lambda: add_phone_number(search_contacts(contacts, name), phone_entry.get())).grid(row=2, column=2)
     Button(new_window, text="Delete Phone",
-           command=lambda: delete_phone_number(search_contacts(contacts, name), phone_entry.get())).grid(row=2, column=3)
+           command=lambda: delete_phone_number(search_contacts(contacts, name)).grid(row=2, column=3))

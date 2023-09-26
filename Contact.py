@@ -25,13 +25,6 @@ class Contact:
             self.phone_numbers.remove(phone_number)
 
 
-def search_contacts(contacts, name):
-    for key, value in contacts.items():
-        if name in key:
-            return value
-    return None
-
-
 def add_email(contact, email):
     contact.emails.append(email)
 
@@ -46,3 +39,10 @@ def add_phone_number(contact, phone_number):
 
 def delete_phone_number(contact):
     contact.phone_numbers = None
+
+
+def search_contacts(contacts, name):
+    for key, value in contacts.items():
+        if name in key:
+            return contacts[key]
+    return None

@@ -8,7 +8,7 @@ def create_contact(root, contacts):
     # Create a new window
     new_window = Toplevel(root)
     new_window.title("Add a contact")
-    new_window.geometry("300x200")
+    new_window.geometry("450x200")
 
     # Create a label for the name
     name_label = Label(new_window, text="Name:")
@@ -44,19 +44,16 @@ def create_contact(root, contacts):
     back_button = Button(new_window, text="Back", command=back_button_click)
     back_button.grid(row=4, column=0)
 
+    manage_contact_button = Button(new_window, text="Manage Contact",
+                                   command=lambda: manage_contact(root, contacts, enter_name.get()))
+    manage_contact_button.grid(row=4, column=1)
+
     def add_button_click():
         new_contact = Contact(enter_name.get(), enter_phone.get(), enter_email.get())
         contacts[new_contact.name] = new_contact
         save_contacts(contacts)
         label.config(text=f"Added: {new_contact.name}")
 
-    def on_manage_contact_button_push():
-        manage_contact(root, contacts, enter_name.get())
-        new_window.destroy()
-
-
+    # Function for add button
     add_button = Button(new_window, text="Add", command=add_button_click)
-    add_button.grid(row=4, column=1)
-
-    manage_contact_button = Button(new_window, text="Manage Contact", command=on_manage_contact_button_push)
-    manage_contact_button.grid(row=4, column=2)
+    add_button.grid(row=4, column=2)
