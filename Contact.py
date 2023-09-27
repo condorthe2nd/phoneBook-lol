@@ -5,10 +5,10 @@ class Contact:
         self.emails = [email] if email else []
 
     def __str__(self):
-        return f"Name: {self.name}, Phone Numbers: {self.phone_numbers}, Emails: {self.emails}"
+        return f"{self.name}\n{self.phone_numbers}\n{self.emails}"
 
     def __repr__(self):
-        return f"Contact({self.name}, {self.phone_numbers}, {self.emails})"
+        return f"Contact({self.name}/n {self.phone_numbers}/n{self.emails})"
 
     def add_email(self, email):
         self.emails.append(email)
@@ -23,6 +23,13 @@ class Contact:
     def delete_phone_number(self, phone_number):
         if phone_number in self.phone_numbers:
             self.phone_numbers.remove(phone_number)
+
+    def get_name(self):
+        return self.name
+
+    def get_phone_numbers(self):
+        return self.phone_numbers
+
 
 
 def add_email(contact, email):

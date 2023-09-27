@@ -1,3 +1,4 @@
+# Pickles.py
 import pickle as yummy
 
 
@@ -11,4 +12,4 @@ def load_contacts(filename='contacts'):
         with open(filename, 'rb') as f:
             return yummy.load(f)
     except FileNotFoundError:
-        return {}
+        return []  # Return an empty list if the file is not found
