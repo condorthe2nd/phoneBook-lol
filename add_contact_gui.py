@@ -11,7 +11,7 @@ styles = get_styles()
 ADD_ICON = "\u2795"  # Add icon
 
 
-def create_contact(root, contacts):
+def create_contact(contacts):
     # Create a new window
     contact_creation_window = Tk()
     contact_creation_window.configure(bg=styles["BG_COLOR"])
@@ -56,7 +56,7 @@ def create_contact(root, contacts):
     back_button.grid(row=4, column=0)
 
     manage_contact_button = ttk.Button(contact_creation_window, text="Manage Contact",
-                                       command=lambda: manage_contact(root, contacts, enter_name.get()))
+                                       command=lambda: manage_contact(contacts, enter_name.get()))
     manage_contact_button.grid(row=4, column=1)
 
     def add_button_click():

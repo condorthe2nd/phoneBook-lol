@@ -1,3 +1,4 @@
+from Pickles import load_contacts
 from style_sheet import get_styles
 from tkinter import Toplevel, Label, messagebox, Frame
 from tkinter import ttk  # for better styling
@@ -5,17 +6,15 @@ from tkinter import ttk  # for better styling
 styles = get_styles()
 
 
-# Constant
-
-def manage_contact(root, contacts, name):
+def manage_contact(contacts, name):
     # Validate if 'name' exists in 'contacts'
     contact = contacts.get(name, None)
     if contact is None:
         messagebox.showerror("Error", "Contact not found")
         return
 
-    # Create a new window
-    new_window = Toplevel(root)
+
+    new_window = Toplevel()
     new_window.config(bg=styles["BG_COLOR"])
     new_window.title(f"Managing Contact: {name}")
 
@@ -49,7 +48,9 @@ def manage_contact(root, contacts, name):
 
     def delete_email_action():
         email = delete_email_entry.get()
-        if email in contact.emails:
+        if email is None:
+            contact.delete_all_email()
+        elif email in contact.emails:
             contact.delete_email(email)
             messagebox.showinfo("Success", "Email deleted successfully")
         else:

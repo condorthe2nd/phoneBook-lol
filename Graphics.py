@@ -1,3 +1,6 @@
+#edit button still saying contacts not found
+# check windwow sizes for all files #
+#
 from tkinter import Tk
 from tkinter import ttk
 
@@ -7,6 +10,10 @@ from Pickles import *
 from add_contact_gui import create_contact
 from search_gui import FindContact
 
+
+
+
+# Create a label for the title
 styles = get_styles()
 
 ADD_ICON = "\u2795"
@@ -24,11 +31,14 @@ style.theme_use('clam')
 styles['configure_button_style']()
 
 # Functionality
-contacts = load_contacts()
+
+
+print("Debug: Type of contacts:", type(contacts))
+print("Debug: Sample content:", dict(list(contacts.items())[:3]))
 
 
 def add_contact():
-    create_contact(home_window, contacts)
+    create_contact(contacts)
 
 
 def search_contacts_button():
@@ -40,12 +50,13 @@ def list_contacts():
 
 
 def exit_app():
+    save_contacts(contacts)
     home_window.destroy()
 
 
 # Buttons
 add_contact_button = ttk.Button(home_window, text=f"{ADD_ICON} Add Contact", width=20, command=add_contact,
-                                style='Rounded.TButton')
+                                style="Rounded.TButton")
 add_contact_button.grid(pady=20, padx=20)
 
 search_contact_button = ttk.Button(home_window, text=f"{SEARCH_ICON} Search Contacts", width=20,
@@ -60,3 +71,4 @@ exit_button = ttk.Button(home_window, text=f"{EXIT_ICON} Exit", width=20, comman
 exit_button.grid(pady=20, padx=20)
 
 home_window.mainloop()
+save_contacts(contacts)

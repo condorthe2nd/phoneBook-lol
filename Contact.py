@@ -8,7 +8,7 @@ class Contact:
         return f"{self.name}\n{self.phone_numbers}\n{self.emails}"
 
     def __repr__(self):
-        return f"Contact({self.name}/n {self.phone_numbers}/n{self.emails})"
+        return f"Contact({self.name}\\n {self.phone_numbers}\\n {self.emails})"
 
     def add_email(self, email):
         self.emails.append(email)
@@ -36,7 +36,7 @@ def add_email(contact, email):
     contact.emails.append(email)
 
 
-def delete_email(contact):
+def delete_all_email(contact):
     contact.emails = None
 
 

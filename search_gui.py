@@ -36,7 +36,7 @@ class FindContact:
         self.result_label.pack()
 
         manage_contact_button = ttk.Button(new_window, text="Manage Contact",
-                                           command=lambda: manage_contact(self.root, self.contacts, self.entry.get()))
+                                           command=lambda: manage_contact(self.contacts, self.entry.get()))
         manage_contact_button.pack()
 
         back_button = ttk.Button(new_window, text="Back", command=new_window.destroy)
